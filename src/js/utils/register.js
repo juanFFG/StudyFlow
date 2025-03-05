@@ -1,6 +1,7 @@
 import { User } from '../data/User.js';
 import bcrypt from 'bcryptjs';
 import { showErrorPopup } from './errorPopUp.js';
+import { showLoginScreenL } from './easyNav.js';
 
 // Registrar un nuevo usuario
 export async function registerUser(username, password, confirmPassword) {
@@ -30,11 +31,7 @@ export async function registerUser(username, password, confirmPassword) {
         const hashedPassword = bcrypt.hashSync(password, salt);
 
         // Crear el nuevo usuario
-        const newUser = {
-            username,
-            password: hashedPassword,
-            tasks: [] // Arreglo vacío de tareas por defecto
-        };
+        const newUser = new User(username, hashedPassword);
 
         // Agregar el nuevo usuario al array
         users.push(newUser);
@@ -43,12 +40,9 @@ export async function registerUser(username, password, confirmPassword) {
         localStorage.setItem("users", JSON.stringify(users));
 
         alert("Registro exitoso. Ahora puedes iniciar sesión.");
-        //Cambiar vista a todayScreen
-        const registerScreen = document.getElementById('registerScreen');
-        const todayScreen = document.getElementById('todayScreen');
+        showLoginScreenL();
 
-        registerScreen.style.display = 'none';
-        todayScreen.style.display = 'flex';
+        
 
     } catch (error) {
         console.error("Error al registrar:", error);

@@ -1,0 +1,35 @@
+import bcrypt from 'bcryptjs';
+import { showErrorPopup } from './errorPopUp.js';
+import { showVerHoyScreenLT } from './easyNav.js';
+
+// Iniciar sesión
+export async function loginUser(username, password) {
+    if (!username || !password) {
+        showErrorPopup("Por favor, completa todos los campos.");
+        return;
+    }
+
+    // Obtener la lista de usuarios almacenados
+    let users = JSON.parse(localStorage.getItem("users")) || [];
+
+    // Buscar el usuario por su nombre
+    const user = users.find(user => user.username === username);
+
+    if (!user) {
+        showErrorPopup("Usuario no encontrado.");
+        return;
+    }
+
+    // Verificar la contraseña
+    const passwordMatch = bcrypt.compareSync(password, user.password);
+    if (!passwordMatch) {
+        showErrorPopup("Contraseña o usuario incorrectos.");
+        return;
+    }
+
+    // Guardar el usuario autenticado en localStorage (para mantener sesión)
+    localStorage.setItem("currentUser", JSON.stringify(user));
+
+    alert("Inicio de sesión exitoso.");
+    showVerHoyScreenLT();
+}
