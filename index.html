@@ -38,57 +38,65 @@
     </section>
 
     <!-- Register Screen -->
-    <section class="register-screen" id="registerScreen">
-      <div class="register-container">
-        <div class="register-header">
-          <h1>Crear Cuenta</h1>
-          <p>Por favor completa la información</p>
-        </div>
-        <form id="registerForm">
-          <div class="form-group">
-            <label for="username">Usuario</label>
-            <div class="input-with-icon">
-              <input type="text" id="username" name="username" placeholder="Ingresa tu usuario" required>
-              <img src="src\assets\images\user.svg" alt="Usuario" class="input-icon">
-            </div>
+    <section class="auth-screen" id="registerScreen">
+      <div class="auth-container">
+          <div class="auth-header">
+              <h1>Crear Cuenta</h1>
+              <p>Por favor completa la información</p>
           </div>
-          <div class="form-group">
-            <label for="password">Contraseña</label>
-            <div class="input-with-icon">
-              <input type="password" id="password" name="password" placeholder="Ingresa tu contraseña" required>
-              <img src="src\assets\images\lock.svg" alt="Contraseña" class="input-icon">
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="confirm-password">Confirmar Contraseña</label>
-            <div class="input-with-icon">
-              <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirma tu contraseña"
-                required>
-              <img src="src\assets\images\lock.svg" alt="Confirmar contraseña" class="input-icon">
-            </div>
-          </div>
-          <button type="submit" class="register-btn">Registrarse</button>
-          <div class="login-link">
-            ¿Ya tienes una cuenta? <a href="#" id="loginLink">Iniciar sesión</a>
-          </div>
-        </form>
+          <form id="registerForm">
+              <div class="form-group">
+                  <label for="username">Usuario</label>
+                  <div class="input-with-icon">
+                      <input type="text" id="username" name="username" placeholder="Ingresa tu usuario" required>
+                      <img src="src/assets/images/user.svg" alt="Usuario" class="input-icon">
+                  </div>
+              </div>
+              <div class="form-group">
+                  <label for="password">Contraseña</label>
+                  <div class="input-with-icon">
+                      <input type="password" id="password" name="password" placeholder="Ingresa tu contraseña" required>
+                      <img src="src/assets/images/lock.svg" alt="Contraseña" class="input-icon">
+                  </div>
+              </div>
+              <div class="form-group">
+                  <label for="confirm-password">Confirmar Contraseña</label>
+                  <div class="input-with-icon">
+                      <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirma tu contraseña" required>
+                      <img src="src/assets/images/lock.svg" alt="Confirmar contraseña" class="input-icon">
+                  </div>
+              </div>
+              <button type="submit" class="auth-btn">Registrarse</button>
+              <div class="auth-link">
+                  ¿Ya tienes una cuenta? <a href="#" id="showLoginLink">Iniciar sesión</a>
+              </div>
+          </form>
       </div>
     </section>
 
     <!-- Login Screen -->
-    <section>
+    <section class="register-screen" id="loginScreen">
+      <div style="justify-content: center; align-items: center;">
+        <div>
+          <h1>login aqui</h1>
+        </div>
+        <div class="auth-link">
+          ¿No tienes una cuenta? <a href="#" id="showRegisterLink">Regístrate</a>
+      </div>
     </section>
 
-    <!-- verHoy Screen -->
-    <section>
     </section>
 
-    <!-- calendario Screen -->
-    <section>
+    <!-- today Screen -->
+    <section class="today-screen" id="todayScreen">
+    </section>
+
+    <!-- calendar Screen -->
+    <section class="calendar-screen" id="calendarScreen">
     </section>
 
     <!-- pomodoro Screen -->
-    <section>
+    <section class="pomodoro-screen" id="pomodoroScreen">
     </section>
 
     <!-- script main -->

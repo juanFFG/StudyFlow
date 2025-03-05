@@ -9,7 +9,7 @@ export async function registerUser(username, password, confirmPassword) {
     }
 
     if (password !== confirmPassword) {
-        alert("Las contraseñas no coinciden.");
+        alert("Contraseña incorrecta. Intenta de nuevo.");
         return;
     }
 
@@ -42,6 +42,13 @@ export async function registerUser(username, password, confirmPassword) {
         localStorage.setItem("users", JSON.stringify(users));
 
         alert("Registro exitoso. Ahora puedes iniciar sesión.");
+        //Cambiar vista a todayScreen
+        const registerScreen = document.getElementById('registerScreen');
+        const todayScreen = document.getElementById('todayScreen');
+
+        registerScreen.style.display = 'none';
+        todayScreen.style.display = 'block';
+
     } catch (error) {
         console.error("Error al registrar:", error);
         alert("Ocurrió un error. Inténtalo de nuevo.");

@@ -1,0 +1,183 @@
+.auth-screen {
+  min-height: 100vh;
+  @include flex(row, center, center);
+  padding: 20px;
+  opacity: 0;
+  transform: translateY(20px);
+  @include transition(opacity, transform);
+  display: none;
+
+  &.visible {
+    opacity: 1;
+    transform: translateY(0);
+    display: flex;
+  }
+
+  &.hidden {
+    opacity: 0;
+    transform: translateY(-20px);
+    pointer-events: none;
+    height: 0;
+  }
+}
+
+.auth-container {
+  background-color: var(--card-bg);
+  border-radius: 10px;
+  box-shadow: 0 5px 15px var(--shadow);
+  width: 100%;
+  max-width: 400px;
+  padding: 2rem;
+  @include transition(background-color, box-shadow);
+
+  @include respond-to(mobile) {
+    max-width: 90%;
+    padding: 1.5rem;
+  }
+
+  @include respond-to(desktop) {
+    max-width: 450px;
+  }
+}
+
+.auth-header {
+  text-align: center;
+  margin-bottom: 2rem;
+
+  h1 {
+    color: var(--text);
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+  }
+
+  p {
+    color: var(--text);
+    opacity: 0.8;
+    font-size: 0.9rem;
+    font-weight: 300;
+  }
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+  position: relative;
+
+  label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--text);
+    font-weight: 400;
+  }
+}
+
+.input-with-icon {
+  position: relative;
+
+  input {
+    width: 100%;
+    padding: 0.8rem 1rem 0.8rem 2.5rem;
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    font-size: 1rem;
+    background-color: transparent;
+    color: var(--text);
+    @include transition(border-color, box-shadow);
+
+    &:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 2px rgba(42, 212, 192, 0.2);
+
+      & + .input-icon {
+        filter: var(--icon-primary-filter);
+      }
+    }
+  }
+
+  .input-icon {
+    position: absolute;
+    left: 0.8rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 16px;
+    height: 16px;
+    filter: var(--icon-filter);
+    @include transition(filter);
+  }
+}
+
+// Nuevos estilos para el formulario de login
+.form-options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  font-size: 0.85rem;
+
+  .remember-me {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    
+    input[type="checkbox"] {
+      accent-color: var(--primary);
+    }
+    
+    label {
+      color: var(--text);
+      cursor: pointer;
+    }
+  }
+  
+  .forgot-password {
+    color: var(--primary);
+    text-decoration: none;
+    
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+  
+  @include respond-to(mobile) {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+}
+
+.auth-btn {
+  width: 100%;
+  background-color: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 0.8rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  @include transition(background-color);
+
+  &:hover {
+    background-color: var(--primary);
+    opacity: 0.9;
+  }
+}
+
+.auth-link {
+  text-align: center;
+  margin-top: 1.5rem;
+  font-size: 0.9rem;
+  color: var(--text);
+  opacity: 0.8;
+
+  a {
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 500;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}

@@ -281,7 +281,7 @@ body {
   animation: progress 3s ease-in-out forwards;
 }
 
-.register-screen {
+.auth-screen {
   min-height: 100vh;
   display: flex;
   flex-direction: row;
@@ -293,13 +293,21 @@ body {
   transition-property: opacity, transform;
   transition-duration: 0.3s;
   transition-timing-function: ease;
+  display: none;
 }
-.register-screen.visible {
+.auth-screen.visible {
   opacity: 1;
   transform: translateY(0);
+  display: flex;
+}
+.auth-screen.hidden {
+  opacity: 0;
+  transform: translateY(-20px);
+  pointer-events: none;
+  height: 0;
 }
 
-.register-container {
+.auth-container {
   background-color: var(--card-bg);
   border-radius: 10px;
   box-shadow: 0 5px 15px var(--shadow);
@@ -311,28 +319,28 @@ body {
   transition-timing-function: ease;
 }
 @media (max-width: 480px) {
-  .register-container {
+  .auth-container {
     max-width: 90%;
     padding: 1.5rem;
   }
 }
 @media (min-width: 1024px) {
-  .register-container {
+  .auth-container {
     max-width: 450px;
   }
 }
 
-.register-header {
+.auth-header {
   text-align: center;
   margin-bottom: 2rem;
 }
-.register-header h1 {
+.auth-header h1 {
   color: var(--text);
   font-size: 1.8rem;
   margin-bottom: 0.5rem;
   font-weight: 600;
 }
-.register-header p {
+.auth-header p {
   color: var(--text);
   opacity: 0.8;
   font-size: 0.9rem;
@@ -386,7 +394,41 @@ body {
   transition-timing-function: ease;
 }
 
-.register-btn {
+.form-options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  font-size: 0.85rem;
+}
+.form-options .remember-me {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.form-options .remember-me input[type=checkbox] {
+  accent-color: var(--primary);
+}
+.form-options .remember-me label {
+  color: var(--text);
+  cursor: pointer;
+}
+.form-options .forgot-password {
+  color: var(--primary);
+  text-decoration: none;
+}
+.form-options .forgot-password:hover {
+  text-decoration: underline;
+}
+@media (max-width: 480px) {
+  .form-options {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+}
+
+.auth-btn {
   width: 100%;
   background-color: var(--primary);
   color: white;
@@ -400,24 +442,24 @@ body {
   transition-duration: 0.3s;
   transition-timing-function: ease;
 }
-.register-btn:hover {
+.auth-btn:hover {
   background-color: var(--primary);
   opacity: 0.9;
 }
 
-.login-link {
+.auth-link {
   text-align: center;
   margin-top: 1.5rem;
   font-size: 0.9rem;
   color: var(--text);
   opacity: 0.8;
 }
-.login-link a {
+.auth-link a {
   color: var(--primary);
   text-decoration: none;
   font-weight: 500;
 }
-.login-link a:hover {
+.auth-link a:hover {
   text-decoration: underline;
 }
 
