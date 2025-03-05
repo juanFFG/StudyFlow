@@ -1,6 +1,7 @@
 import { showRegisterScreen } from './utils/splash.js';
 import { registerUser } from './utils/register.js';
 import { navigation } from "./data/Navigation.js";
+import { showRegisterScreenL, showLoginScreenL } from './utils/easyNav.js';
 
 document.addEventListener('DOMContentLoaded', () => {
     setTimeout(showRegisterScreen, 3000);
@@ -23,20 +24,19 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    document.getElementById("showLoginLink").addEventListener("click", (e) => {
-        e.preventDefault();
-        const registerScreen = document.getElementById("registerScreen");
-        const loginScreen = document.getElementById("loginScreen");
-        registerScreen.style.display = "none";
-        loginScreen.style.display = "flex";
-    });
+    //manejar el formulario de login
+    const loginForm = document.getElementById("loginForm");
+    
 
-    document.getElementById("showRegisterLink").addEventListener("click", (e) => {
+    // Configurar enlaces para cambiar entre pantallas
+    document.getElementById('showLoginLink').addEventListener('click', function(e) {
         e.preventDefault();
-        const registerScreen = document.getElementById("registerScreen");
-        const loginScreen = document.getElementById("loginScreen");
-        loginScreen.style.display = "none";
-        registerScreen.style.display = "flex";
+        showLoginScreenL();
+    });
+    
+    document.getElementById('showRegisterLink').addEventListener('click', function(e) {
+        e.preventDefault();
+        showRegisterScreenL();
     });
 });
 

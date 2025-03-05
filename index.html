@@ -75,13 +75,39 @@
     </section>
 
     <!-- Login Screen -->
-    <section class="register-screen" id="loginScreen">
-      <div style="justify-content: center; align-items: center;">
-        <div>
-          <h1>login aqui</h1>
-        </div>
-        <div class="auth-link">
-          ¿No tienes una cuenta? <a href="#" id="showRegisterLink">Regístrate</a>
+    <section class="auth-screen" id="loginScreen">
+      <div class="auth-container">
+          <div class="auth-header">
+              <h1>Iniciar Sesión</h1>
+              <p>Ingresa tus credenciales para continuar</p>
+          </div>
+          <form id="loginForm">
+              <div class="form-group">
+                  <label for="login-username">Usuario</label>
+                  <div class="input-with-icon">
+                      <input type="text" id="login-username" name="username" placeholder="Ingresa tu usuario" required>
+                      <img src="src/assets/images/user.svg" alt="Usuario" class="input-icon">
+                  </div>
+              </div>
+              <div class="form-group">
+                  <label for="login-password">Contraseña</label>
+                  <div class="input-with-icon">
+                      <input type="password" id="login-password" name="password" placeholder="Ingresa tu contraseña" required>
+                      <img src="src/assets/images/lock.svg" alt="Contraseña" class="input-icon">
+                  </div>
+              </div>
+              <div class="form-options">
+                  <div class="remember-me">
+                      <input type="checkbox" id="remember" name="remember">
+                      <label for="remember">Recordarme</label>
+                  </div>
+                  <a href="#" class="forgot-password">¿Olvidaste tu contraseña?</a>
+              </div>
+              <button type="submit" class="auth-btn">Iniciar Sesión</button>
+              <div class="auth-link">
+                  ¿No tienes una cuenta? <a href="#" id="showRegisterLink">Regístrate</a>
+              </div>
+          </form>
       </div>
     </section>
 
