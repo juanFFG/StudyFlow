@@ -20,7 +20,7 @@
     <div class="splash-screen" id="splashScreen">
       <div class="splash-container">
         <div class="logo">
-          <span class="logo-letter">A</span>
+          <span class="logo-letter"></span>
         </div>
         <div>
           <h1 class="loading-text">Cargando</h1>
@@ -49,14 +49,14 @@
             <label for="username">Usuario</label>
             <div class="input-with-icon">
               <input type="text" id="username" name="username" placeholder="Ingresa tu usuario" required>
-              <img src="assets/icons/user.svg" alt="Usuario" class="input-icon">
+              <img src="src\assets\images\user.svg" alt="Usuario" class="input-icon">
             </div>
           </div>
           <div class="form-group">
             <label for="password">Contraseña</label>
             <div class="input-with-icon">
               <input type="password" id="password" name="password" placeholder="Ingresa tu contraseña" required>
-              <img src="assets/icons/lock.svg" alt="Contraseña" class="input-icon">
+              <img src="src\assets\images\lock.svg" alt="Contraseña" class="input-icon">
             </div>
           </div>
           <div class="form-group">
@@ -64,7 +64,7 @@
             <div class="input-with-icon">
               <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirma tu contraseña"
                 required>
-              <img src="assets/icons/lock.svg" alt="Confirmar contraseña" class="input-icon">
+              <img src="src\assets\images\lock.svg" alt="Confirmar contraseña" class="input-icon">
             </div>
           </div>
           <button type="submit" class="register-btn">Registrarse</button>
@@ -91,7 +91,37 @@
     <div>
     </div>
 
-    <!-- script -->
+    <!-- script main -->
+    <script type="module" src="./src/js/main.js"></script>
+    <!-- script theme -->
+     <script>
+      function toggleTheme() {
+            const body = document.body;
+            const moonIcon = document.querySelector('.moon-icon');
+            const sunIcon = document.querySelector('.sun-icon');
+            
+            body.classList.toggle('dark-mode');
+            
+            // Toggle icons
+            if (body.classList.contains('dark-mode')) {
+                moonIcon.style.display = 'none';
+                sunIcon.style.display = 'block';
+            } else {
+                moonIcon.style.display = 'block';
+                sunIcon.style.display = 'none';
+            }
+
+            // Guardar preferencia en localStorage
+            localStorage.setItem('darkMode', body.classList.contains('dark-mode'));
+        }
+
+        const darkMode = localStorage.getItem('darkMode') === 'true';
+            if (darkMode) {
+                document.body.classList.add('dark-mode');
+                document.querySelector('.moon-icon').style.display = 'none';
+                document.querySelector('.sun-icon').style.display = 'block';
+            }
+     </script>
 
   </main>
 </body>
