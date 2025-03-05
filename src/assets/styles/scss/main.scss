@@ -1,0 +1,14 @@
+// Importar variables y mixins primero
+@import 'variables';
+@import 'mixins';
+@import 'animations';
+
+// Luego importar estilos base
+@import 'base';
+
+// Después importar componentes compartidos
+@import 'shared';
+
+// Finalmente importar componentes específicos
+@import 'splash';
+@import 'register';

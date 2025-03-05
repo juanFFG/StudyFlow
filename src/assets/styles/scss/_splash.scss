@@ -1,0 +1,123 @@
+.splash-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--bg);
+    @include flex(column, center, center);
+    z-index: 100;
+    @include transition(opacity, transform);
+  
+    &.hidden {
+      opacity: 0;
+      transform: translateY(-20px);
+      pointer-events: none;
+    }
+  }
+  
+  .splash-container {
+    @include flex(column, center, center);
+    text-align: center;
+    gap: 2rem;
+  }
+  
+  .logo {
+    width: 120px;
+    height: 120px;
+    border-radius: 24px;
+    background-color: var(--primary);
+    @include flex(row, center, center);
+    box-shadow: 0 8px 30px rgba(42, 212, 192, 0.3);
+    position: relative;
+    overflow: hidden;
+  
+    &::after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transform: translateX(-100%);
+      animation: shimmer 2s infinite;
+    }
+  
+    @include respond-to(mobile) {
+      width: 100px;
+      height: 100px;
+    }
+  
+    @include respond-to(desktop) {
+      width: 150px;
+      height: 150px;
+    }
+  }
+  
+  .logo-letter {
+    color: white;
+    font-size: 3.5rem;
+    font-weight: 600;
+  
+    @include respond-to(mobile) {
+      font-size: 3rem;
+    }
+  
+    @include respond-to(desktop) {
+      font-size: 4.5rem;
+    }
+  }
+  
+  .loading-text {
+    font-size: 1.2rem;
+    font-weight: 400;
+    margin-top: 1rem;
+    letter-spacing: 1px;
+  
+    @include respond-to(desktop) {
+      font-size: 1.5rem;
+    }
+  }
+  
+  .loading-spinner {
+    display: flex;
+    margin-top: 1rem;
+  }
+  
+  .dot {
+    width: 12px;
+    height: 12px;
+    margin: 0 5px;
+    border-radius: 50%;
+    background-color: var(--primary);
+    animation: bounce 1.5s infinite ease-in-out;
+  
+    &:nth-child(1) {
+      animation-delay: 0s;
+    }
+  
+    &:nth-child(2) {
+      animation-delay: 0.2s;
+    }
+  
+    &:nth-child(3) {
+      animation-delay: 0.4s;
+    }
+  }
+  
+  .progress-container {
+    width: 200px;
+    height: 4px;
+    background-color: var(--border);
+    border-radius: 4px;
+    margin-top: 2rem;
+    overflow: hidden;
+    opacity: 0.7;
+  }
+  
+  .progress-bar {
+    height: 100%;
+    width: 0;
+    background-color: var(--primary);
+    border-radius: 4px;
+    animation: progress 3s ease-in-out forwards;
+  }
