@@ -3,8 +3,10 @@ import { registerUser } from './utils/register.js';
 import { navigation } from "./data/Navigation.js";
 
 document.addEventListener('DOMContentLoaded', () => {
-    navigation.init();
     setTimeout(showRegisterScreen, 3000);
+
+    // Inicializar la navegación
+    navigation.init();
 
     // Manejar el formulario de registro
     const registerForm = document.getElementById("registerForm");
@@ -25,8 +27,8 @@ document.addEventListener('DOMContentLoaded', () => {
         e.preventDefault();
         const registerScreen = document.getElementById("registerScreen");
         const loginScreen = document.getElementById("loginScreen");
-        registerScreen.classList.add("hidden");
-        loginScreen.style.display = "block";
+        registerScreen.style.display = "none";
+        loginScreen.style.display = "flex";
     });
 
     document.getElementById("showRegisterLink").addEventListener("click", (e) => {
@@ -34,7 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const registerScreen = document.getElementById("registerScreen");
         const loginScreen = document.getElementById("loginScreen");
         loginScreen.style.display = "none";
-        registerScreen.classList.remove("hidden");
+        registerScreen.style.display = "flex";
     });
 });
 

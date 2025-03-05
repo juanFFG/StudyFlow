@@ -22,10 +22,10 @@ class Navigation {
         }
 
         // Ocultar todas las vistas
-        this.views.forEach(v => v.ref.style.display = "none");
+        this.views.forEach(v => v.ref.classList.add("inactive"));
 
         // Mostrar la vista deseada
-        view.ref.style.display = "block";
+        view.ref.classList.remove("hidden");
     }
 }
 

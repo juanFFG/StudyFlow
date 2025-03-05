@@ -1,15 +1,16 @@
 import { User } from '../data/User.js';
 import bcrypt from 'bcryptjs';
+import { showErrorPopup } from './errorPopUp.js';
 
 // Registrar un nuevo usuario
 export async function registerUser(username, password, confirmPassword) {
     if (!username || !password || !confirmPassword) {
-        alert("Por favor, completa todos los campos.");
+        showErrorPopup("Por favor, completa todos los campos.");
         return;
     }
 
     if (password !== confirmPassword) {
-        alert("Contraseña incorrecta. Intenta de nuevo.");
+        showErrorPopup("Las contraseñas no coinciden. Intenta de nuevo.");
         return;
     }
 
@@ -19,7 +20,7 @@ export async function registerUser(username, password, confirmPassword) {
     // Verificar si el usuario ya existe
     const userExists = users.some(user => user.username === username);
     if (userExists) {
-        alert("El usuario ya existe. Intenta con otro.");
+        showErrorPopup("El usuario ya existe. Intenta con otro.");
         return;
     }
 
@@ -47,10 +48,10 @@ export async function registerUser(username, password, confirmPassword) {
         const todayScreen = document.getElementById('todayScreen');
 
         registerScreen.style.display = 'none';
-        todayScreen.style.display = 'block';
+        todayScreen.style.display = 'flex';
 
     } catch (error) {
         console.error("Error al registrar:", error);
-        alert("Ocurrió un error. Inténtalo de nuevo.");
+        showErrorPopup("Ocurrió un error. Inténtalo de nuevo.");
     }
 }
