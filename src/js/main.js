@@ -3,6 +3,8 @@ import { registerUser } from './utils/register.js';
 import { navigation } from "./data/Navigation.js";
 import { showRegisterScreenL, showLoginScreenL } from './utils/easyNav.js';
 import { loginUser } from './utils/logIn.js';
+import { updateDateTime } from './utils/dateTime.js';
+
 
 document.addEventListener('DOMContentLoaded', () => {
     setTimeout(showRegisterScreen, 3000);
@@ -10,6 +12,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // Inicializar la navegación
     navigation.init();
 
+    // Inicializar la fecha y hora
+    updateDateTime();
+    setInterval(updateDateTime, 60000);
     // Manejar el formulario de registro
     const registerForm = document.getElementById("registerForm");
 

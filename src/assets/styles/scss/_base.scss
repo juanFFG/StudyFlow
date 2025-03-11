@@ -23,48 +23,13 @@
     --card-bg: #{$card-bg-light};
     --shadow: #{$shadow-light};
     
-    // Filtros para iconos SVG en modo claro
-    --icon-filter: invert(50%) sepia(10%) saturate(500%) hue-rotate(180deg) brightness(90%) contrast(90%);
-    --icon-primary-filter: invert(70%) sepia(60%) saturate(400%) hue-rotate(130deg) brightness(95%) contrast(95%);
-  }
-  
-  .dark-mode {
-    // Modo Oscuro
-    --bg: #{$bg-dark};
-    --text: #{$text-dark};
-    --border: #{$border-dark};
-    --primary: #{$primary-dark};
-    --success: #{$success-dark};
-    --card-bg: #{$card-bg-dark};
-    --shadow: #{$shadow-dark};
-    
-    // Filtros para iconos SVG en modo oscuro
-    --icon-filter: invert(80%) sepia(10%) saturate(200%) hue-rotate(180deg) brightness(110%) contrast(90%);
-    --icon-primary-filter: invert(70%) sepia(40%) saturate(400%) hue-rotate(130deg) brightness(90%) contrast(95%);
-  }* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: $font-primary;
-  }
-  
-  body {
-    background-color: var(--bg);
-    min-height: 100vh;
-    color: var(--text);
-    @include transition(background-color);
-    overflow-x: hidden;
-  }
-  
-  :root {
-    // Modo Claro (default)
-    --bg: #{$bg-light};
-    --text: #{$text-light};
-    --border: #{$border-light};
-    --primary: #{$primary-light};
-    --success: #{$success-light};
-    --card-bg: #{$card-bg-light};
-    --shadow: #{$shadow-light};
+    // Colores adicionales
+    --nav-bg: #{$border-light};
+    --nav-text: #{$text-light};
+    --nav-active: #{$primary-light};
+    --nav-text-active: #ffffff;
+    --task-card-bg: #{$card-bg-light};
+    --task-card-text: #{$text-light};
     
     // Filtros para iconos SVG en modo claro
     --icon-filter: invert(50%) sepia(10%) saturate(500%) hue-rotate(180deg) brightness(90%) contrast(90%);
@@ -81,6 +46,14 @@
     --success: #{$success-dark};
     --card-bg: #{$card-bg-dark};
     --shadow: #{$shadow-dark};
+    
+    // Colores adicionales
+    --nav-bg: #{$border-dark};
+    --nav-text: #{$text-dark};
+    --nav-active: #{$primary-dark};
+    --nav-text-active: #ffffff;
+    --task-card-bg: #{$card-bg-dark};
+    --task-card-text: #{$text-dark};
     
     // Filtros para iconos SVG en modo oscuro
     --icon-filter: invert(80%) sepia(10%) saturate(200%) hue-rotate(180deg) brightness(110%) contrast(90%);
