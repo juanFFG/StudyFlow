@@ -38,11 +38,6 @@
     cursor: pointer;
     @include transition(all);
     
-    &.active {
-      background-color: var(--nav-active);
-      color: var(--nav-text-active);
-    }
-    
     &.add {
       width: 36px;
       height: 36px;
@@ -58,6 +53,11 @@
       padding: 8px 12px;
       font-size: 13px;
     }
+  }
+
+  .nav-btn.active {
+    background-color: var(--nav-active-bg);
+    color: var(--nav-active-text);
   }
   
   // Contenedores de vistas

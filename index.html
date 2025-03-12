@@ -129,7 +129,7 @@
         <nav class="nav">
           <button class="nav-btn" data-view="today-view">Hoy</button>
           <button class="nav-btn" data-view="calendar-view">Calendario</button>
-          <button class="nav-btn" data-view="pomodoroScreen">Pomodoro</button>
+          <button class="nav-btn" data-view="pomodoro-view">Pomodoro</button>
           <button class="nav-btn add">+</button>
         </nav>
       </div>
@@ -255,12 +255,42 @@
       </section>
 
       <!-- pomodoro Screen -->
-      <section class="pomodoro-screen" id="pomodoroScreen">
-        <div style="text-align: center; padding: 50px 0;">
-          <h2>Vista Pomodoro</h2>
-          <p>Esta vista está en desarrollo.</p>
+      <div id="pomodoro-view" class="">
+        <div class="pomodoro-container">
+          <!-- Selector de modos -->
+          <div class="pomodoro-modes">
+            <button class="pomodoro-mode-btn work active" data-mode="work" data-time="25">Trabajo</button>
+            <button class="pomodoro-mode-btn short-break" data-mode="short-break" data-time="5">Descanso Corto</button>
+            <button class="pomodoro-mode-btn long-break" data-mode="long-break" data-time="15">Descanso Largo</button>
+          </div>
+
+          <!-- Temporizador -->
+          <div class="pomodoro-timer-container">
+            <div class="pomodoro-progress" id="pomodoro-progress"></div>
+            <div class="pomodoro-timer">
+              <div class="pomodoro-time" id="pomodoro-time">25:00</div>
+            </div>
+          </div>
+
+          <!-- Controles -->
+          <div class="pomodoro-controls">
+            <button class="pomodoro-btn reset" id="pomodoro-reset">
+              <span>↺</span>
+            </button>
+            <button class="pomodoro-btn" id="pomodoro-start-pause">
+              <span id="pomodoro-play-icon">▶</span>
+              <span id="pomodoro-pause-icon" style="display:none;">❚❚</span>
+            </button>
+          </div>
+
+          <!-- Estadísticas -->
+          <div class="pomodoro-stats">
+            <div class="pomodoro-cycles" id="pomodoro-cycles">0 ciclos completados</div>
+            <div class="pomodoro-label">Objetivo: 4 ciclos</div>
+          </div>
         </div>
-      </section>
+      </div>
+
     </section>
 
     <!-- Error Popup -->

@@ -4,11 +4,12 @@ import { Navigation } from './data/Navigation.js';
 import { showRegisterScreenL, showLoginScreenL } from './utils/easyNav.js';
 import { loginUser } from './utils/logIn.js';
 import { updateDateTime } from './utils/dateTime.js';
+import { Pomodoro } from './data/Pomodoro.js';
 
 document.addEventListener('DOMContentLoaded', () => {
     const navigation = new Navigation(
         ['splashScreen', 'registerScreen', 'loginScreen', 'dashboardScreen'], // Vistas principales
-        ['today-view', 'calendar-view', 'pomodoroScreen'] // Vistas dentro de dashboard
+        ['today-view', 'calendar-view', 'pomodoro-view'] // Vistas dentro de dashboard
     );
     navigation.init();
 
@@ -42,6 +43,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // Inicializar la fecha y hora
     updateDateTime();
     setInterval(updateDateTime, 60000);
+
+    const pomodoro = new Pomodoro();
 
     // Manejar el formulario de registro
     const registerForm = document.getElementById("registerForm");
