@@ -128,7 +128,7 @@
       <div class="nav-container">
         <nav class="nav">
           <button class="nav-btn" data-view="today-view">Hoy</button>
-          <button class="nav-btn" data-view="calendarScreen">Calendario</button>
+          <button class="nav-btn" data-view="calendar-view">Calendario</button>
           <button class="nav-btn" data-view="pomodoroScreen">Pomodoro</button>
           <button class="nav-btn add">+</button>
         </nav>
@@ -168,11 +168,94 @@
       </section>
 
       <!-- calendar Screen -->
-      <section class="calendar-screen" id="calendarScreen">
-        <div style="text-align: center; padding: 50px 0;">
-          <h2>Vista </h2>
-          <p>Esta vista está en desarrollo.</p>
+      <section id="calendar-view" class="">
+        <!-- Selector de mes -->
+        <div class="month-selector">
+          <span class="month-inactive">Enero</span>
+          <div class="month-nav">
+            <button class="month-arrow">&lt;</button>
+            <span class="month-current">Febrero</span>
+            <button class="month-arrow">&gt;</button>
+          </div>
+          <span class="month-inactive">Marzo</span>
         </div>
+
+        <!-- Lista de tareas del calendario -->
+        <main class="calendar-list">
+          <div class="day-card">
+            <div class="day-info">
+              <span class="day-name">Lunes</span>
+              <span class="day-number">17</span>
+            </div>
+            <div class="day-tasks">
+              <div class="task-column">
+                <div class="task-time">8:00 AM</div>
+                <div class="task-title">Parcial #1</div>
+                <div class="task-subtitle">Álgebra Lineal</div>
+                <div class="task-progress">20%</div>
+              </div>
+              <div class="task-column">
+                <div class="task-time">14:00 PM</div>
+                <div class="task-title">Exposición</div>
+                <div class="task-subtitle">Arquitectura de...</div>
+                <div class="task-progress">10%</div>
+              </div>
+            </div>
+            <button class="add-task-btn">+</button>
+          </div>
+
+          <div class="day-card">
+            <div class="day-info">
+              <span class="day-name">Martes</span>
+              <span class="day-number">18</span>
+            </div>
+            <div class="day-tasks">
+              <div class="task-column">
+                <div class="task-time">10:00 AM</div>
+                <div class="task-title">Parcial #1</div>
+                <div class="task-subtitle">Estructuras de datos</div>
+                <div class="task-progress">20%</div>
+              </div>
+              <div class="task-column">
+                <div class="task-time">11:59 PM</div>
+                <div class="task-title">Entrega #1</div>
+                <div class="task-subtitle">Contexto Profesional</div>
+                <div class="task-progress">10%</div>
+              </div>
+            </div>
+            <button class="add-task-btn">+</button>
+          </div>
+
+          <div class="day-card">
+            <div class="day-info">
+              <span class="day-name">Miércoles</span>
+              <span class="day-number">19</span>
+            </div>
+            <div class="day-tasks">
+              <div class="task-column">
+                <div class="task-time">12:00 PM</div>
+                <div class="task-title">Parcial #1</div>
+                <div class="task-subtitle">Bases de datos</div>
+                <div class="task-progress">20%</div>
+              </div>
+            </div>
+            <button class="add-task-btn">+</button>
+          </div>
+
+          <div class="day-card">
+            <div class="day-info">
+              <span class="day-name">Jueves</span>
+              <span class="day-number">20</span>
+            </div>
+            <div class="day-tasks">
+              <div class="task-column">
+                <div class="task-time">6:00 AM</div>
+                <div class="task-title">Sin tareas</div>
+              </div>
+            </div>
+            <button class="add-task-btn">+</button>
+          </div>
+        </main>
       </section>
 
       <!-- pomodoro Screen -->

@@ -8,7 +8,7 @@ import { updateDateTime } from './utils/dateTime.js';
 document.addEventListener('DOMContentLoaded', () => {
     const navigation = new Navigation(
         ['splashScreen', 'registerScreen', 'loginScreen', 'dashboardScreen'], // Vistas principales
-        ['today-view', 'calendarScreen', 'pomodoroScreen'] // Vistas dentro de dashboard
+        ['today-view', 'calendar-view', 'pomodoroScreen'] // Vistas dentro de dashboard
     );
     navigation.init();
 
