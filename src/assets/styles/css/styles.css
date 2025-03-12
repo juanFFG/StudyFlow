@@ -843,28 +843,9 @@ body {
   opacity: 0.8;
   margin-bottom: 5px;
 }
-#calendar-view .task-column .task-progress {
+#calendar-view .task-column .task-value {
   font-size: 12px;
   opacity: 0.8;
-}
-#calendar-view .add-task-btn {
-  background: none;
-  border: none;
-  color: var(--task-card-text);
-  font-size: 20px;
-  cursor: pointer;
-  padding: 0 10px;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  opacity: 0.8;
-  transition-property: opacity;
-  transition-duration: 0.3s;
-  transition-timing-function: ease;
-}
-#calendar-view .add-task-btn:hover {
-  opacity: 1;
 }
 
 /*# sourceMappingURL=styles.css.map */
