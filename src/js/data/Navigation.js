@@ -16,6 +16,7 @@ export class Navigation {
         document.querySelectorAll('.nav-btn').forEach(button => {
             button.addEventListener('click', () => {
                 const viewId = button.getAttribute('data-view');
+                this.showView(viewId);
                 this.navigateTo(viewId);
             });
         });
