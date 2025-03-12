@@ -14,5 +14,5 @@ export function showRegisterScreenL() {
 export function showTodayScreenLT() {
     document.getElementById('loginScreen').classList.remove('visible');
     document.getElementById('dashboardScreen').classList.remove('inactive');
-    document.getElementById('today-view').classList.add('visible');
+    document.getElementById('today-view').classList.remove('inactive');
 }

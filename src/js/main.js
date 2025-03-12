@@ -73,4 +73,12 @@ document.addEventListener('DOMContentLoaded', () => {
         e.preventDefault();
         showRegisterScreenL();
     });
+
+    // Cerrar sesión
+    document.getElementById('logoutBtn')?.addEventListener('click', () => {
+        localStorage.setItem("loggedIn", "false");
+        localStorage.setItem("currentScreen", "loginScreen");
+        localStorage.removeItem("currentUser");
+        location.reload();
+    });
 });
