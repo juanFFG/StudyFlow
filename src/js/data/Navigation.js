@@ -1,33 +1,75 @@
-class Navigation {
-    constructor() {
-        this.views = [];
+export class Navigation {
+    constructor(views, dashboardViews) {
+        this.views = views; // Vistas principales
+        this.dashboardViews = dashboardViews; // Vistas dentro de Dashboard
+        this.currentView = null;
     }
 
     init() {
-        this.views = [
-            { name: "splash", ref: document.getElementById("splashScreen") },
-            { name: "register", ref: document.getElementById("registerScreen") },
-            { name: "login", ref: document.getElementById("loginScreen") },
-            { name: "verHoy", ref: document.getElementById("verHoyScreen") },
-            { name: "calendar", ref: document.getElementById("calendarScreen") },
-            { name: "pomodoro", ref: document.getElementById("pomodoroScreen") }
-        ];
+        // Ocultar todas las vistas
+        this.views.forEach(view => document.getElementById(view).classList.add('inactive'));
+        this.dashboardViews.forEach(view => document.getElementById(view).classList.add('inactive'));
+
+        // Mostrar la vista inicial
+        this.showView(this.views[0]);
+
+        document.querySelectorAll('.nav-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                const viewId = button.getAttribute('data-view');
+                this.navigateTo(viewId);
+            });
+        });
+
+        window.addEventListener('popstate', () => {
+            const viewId = history.state?.view || this.views[0];
+            this.showView(viewId);
+        });
     }
 
-    navigateTo(viewName) {
-        const view = this.views.find(v => v.name === viewName);
-        if (!view) {
-            console.error(`Vista "${viewName}" no encontrada.`);
-            return;
+    showView(viewId) {
+        console.log("🔄 Cambiando a vista:", viewId);
+        localStorage.setItem("currentScreen", viewId);
+
+        // Verifica si la vista es parte del dashboard
+        if (this.dashboardViews.includes(viewId)) {
+            console.log("📌 Vista dentro de dashboard");
+            document.getElementById('dashboardScreen').classList.remove('inactive');
+
+            this.dashboardViews.forEach(view => {
+                if (document.getElementById(view)) {
+                    if (view === viewId) {
+                        document.getElementById(view).classList.remove('inactive');
+                    } else {
+                        document.getElementById(view).classList.add('inactive');
+                    }
+                }
+            });
+        } else {
+            console.log("📌 Vista principal fuera del dashboard");
+            // Ocultar todas las vistas principales
+            this.views.forEach(view => {
+                if (document.getElementById(view)) {
+                    if (view === viewId) {
+                        document.getElementById(view).classList.remove('inactive');
+                    } else {
+                        document.getElementById(view).classList.add('inactive');
+                    }
+                }
+            });
+
+            // Ocultar dashboard si no se está navegando a él
+            if (viewId !== "dashboardScreen") {
+                document.getElementById('dashboardScreen')?.classList.add('inactive');
+            }
         }
 
-        // Ocultar todas las vistas
-        this.views.forEach(v => v.ref.classList.add("inactive"));
+        this.currentView = viewId;
+    }
 
-        // Mostrar la vista deseada
-        view.ref.classList.remove("hidden");
+
+    navigateTo(viewId) {
+        if (![...this.views, ...this.dashboardViews].includes(viewId)) return;
+        this.showView(viewId);
+        history.pushState({ view: viewId }, '', `#${viewId}`);
     }
 }
-
-// Exportar una instancia para que se use en toda la app
-export const navigation = new Navigation();

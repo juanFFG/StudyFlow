@@ -1,6 +1,6 @@
 import { User } from '../data/User.js';
 import bcrypt from 'bcryptjs';
-import { showErrorPopup } from './errorPopUp.js';
+import { showErrorPopup, showSuccessPopup } from './popUps.js';
 import { showLoginScreenL } from './easyNav.js';
 
 // Registrar un nuevo usuario
@@ -39,7 +39,7 @@ export async function registerUser(username, password, confirmPassword) {
         // Guardar el array actualizado en localStorage
         localStorage.setItem("users", JSON.stringify(users));
 
-        alert("Registro exitoso. Ahora puedes iniciar sesión.");
+        showSuccessPopup("Registro exitoso. Ahora puedes iniciar sesión.");
         showLoginScreenL();
 
         

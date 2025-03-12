@@ -1,95 +1,7 @@
-.today {
-    justify-content: center;  /* Centra horizontalmente */
-    align-items: center;
-    background-color: var(--bg);
-    color: var(--text);
-    min-height: 100vh;
+#today-view {
     padding: 20px;
-    transition: background-color var(--transition-speed) var(--transition-function);
-    @include respond-to(mobile) {
-        max-width: 100%;
-        padding: 1.5rem;
-      }
-    
-      @include respond-to(desktop) {
-        max-width: 450px;
-      }    
 
-    /* Header */
-    .header {
-        display: flex;
-        align-items: center;
-        margin-bottom: 20px;
-    }
-
-    .logout-btn {
-        background: none;
-        border: none;
-        padding: 8px;
-        cursor: pointer;
-    }
-
-    .logout-btn img {
-        width: 24px;
-        height: 24px;
-        filter: var(--icon-filter);
-    }
-
-    .theme-toggle {
-        background: none;
-        border: none;
-        cursor: pointer;
-    }
-
-    .theme-toggle img {
-        width: 20px;
-        height: 20px;
-        filter: var(--icon-filter);
-    }
-
-    /* Navegación */
-    .nav-container {
-        margin-bottom: 30px;
-    }
-
-    .nav {
-        display: flex;
-        gap: 10px;
-        width: 100%;
-        justify-content: center;
-    }
-
-    .nav-btn {
-        padding: 8px 16px;
-        border-radius: 20px;
-        border: none;
-        background-color: var(--nav-bg);
-        color: var(--nav-text);
-        font-size: 14px;
-        font-weight: 500;
-        cursor: pointer;
-        transition: all var(--transition-speed) var(--transition-function);
-    }
-
-    .nav-btn.active {
-        background-color: var(--nav-active);
-        color: var(--nav-text-active);
-    }
-
-    .nav-btn.add {
-        width: 36px;
-        height: 36px;
-        padding: 0;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 20px;
-        background-color: var(--primary);
-        color: white;
-    }
-
-    /* Sección de fecha y hora */
+    // Sección de fecha y hora
     .datetime {
         margin-bottom: 30px;
     }
@@ -101,25 +13,30 @@
     }
 
     .date-time {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+        @include flex(row, space-between, center);
     }
 
     .date {
         font-size: 24px;
         font-weight: 600;
+
+        @include respond-to(mobile) {
+            font-size: 20px;
+        }
     }
 
     .time {
         font-size: 20px;
         font-weight: 500;
+
+        @include respond-to(mobile) {
+            font-size: 18px;
+        }
     }
 
-    /* Lista de tareas */
+    // Lista de tareas
     .task-list {
-        display: flex;
-        flex-direction: column;
+        @include flex(column, flex-start, stretch);
         gap: 15px;
     }
 
@@ -129,43 +46,34 @@
         padding: 20px;
         border-radius: 15px;
         position: relative;
-        box-shadow: 0 4px 8px var(--shadow);
-    }
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 
-    .task-title {
-        font-size: 16px;
-        font-weight: 600;
-        margin-bottom: 5px;
-    }
+        .task-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
 
-    .task-subject {
-        font-size: 14px;
-        opacity: 0.9;
-        margin-bottom: 10px;
-    }
+        .task-subject {
+            font-size: 14px;
+            opacity: 0.9;
+            margin-bottom: 10px;
+        }
 
-    .task-details {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        gap: 5px;
-    }
+        .task-details {
+            @include flex(row, space-between, center);
+        }
 
-    .task-comment{
-        font-size: 14px;
-        opacity: 0.9;
-    }
+        .task-time {
+            font-size: 14px;
+        }
 
-    .task-time {
-        font-size: 14px;
-    }
-
-    .task-value {
-        position: absolute;
-        top: 15px;
-        right: 20px;
-        font-size: 20px;
-        opacity: 1;
-        margin-top: 5px;
+        .task-value {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 14px;
+            opacity: 1;
+        }
     }
 }

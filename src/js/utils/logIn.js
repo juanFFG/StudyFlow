@@ -1,6 +1,6 @@
 import bcrypt from 'bcryptjs';
-import { showErrorPopup } from './errorPopUp.js';
-import { showVerHoyScreenLT } from './easyNav.js';
+import { showErrorPopup, showSuccessPopup } from './popUps.js';
+import { showTodayScreenLT } from './easyNav.js';
 
 // Iniciar sesión
 export async function loginUser(username, password) {
@@ -29,7 +29,9 @@ export async function loginUser(username, password) {
 
     // Guardar el usuario autenticado en localStorage (para mantener sesión)
     localStorage.setItem("currentUser", JSON.stringify(user));
+    localStorage.setItem("currentScreen", "today");
+    localStorage.setItem("loggedIn", true);
 
-    alert("Inicio de sesión exitoso.");
-    showVerHoyScreenLT();
+    showSuccessPopup("Inicio de sesión exitoso.");
+    showTodayScreenLT();
 }

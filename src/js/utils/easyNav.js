@@ -11,7 +11,8 @@ export function showRegisterScreenL() {
 }
 
 // Función para mostrar la pantalla de ver hoy LT: Login-Today
-export function showVerHoyScreenLT() {
+export function showTodayScreenLT() {
     document.getElementById('loginScreen').classList.remove('visible');
-    document.getElementById('todayScreen').classList.add('visible');
+    document.getElementById('dashboardScreen').classList.remove('inactive');
+    document.getElementById('today-view').classList.add('visible');
 }
