@@ -1,6 +1,4 @@
 // calendar.js
-// No necesitamos importar User.js porque usaremos los datos de localStorage directamente
-
 // Obtener elementos del DOM
 const monthCurrent = document.querySelector('.month-current');
 const monthBf = document.querySelector('#month-bf');
@@ -18,14 +16,16 @@ let currentDate = new Date();
 let currentMonth = currentDate.getMonth(); // 0-11
 let currentYear = currentDate.getFullYear();
 
+console.log(`Inicializando calendario: ${months[currentMonth]} ${currentYear}`);
+
 // Función para renderizar el calendario
 function renderCalendar(month, year, tasks) {
+    console.log(`Renderizando: ${months[month]} ${year}`); // Depuración
     monthCurrent.textContent = `${months[month]} ${year}`;
     calendarList.innerHTML = '';
 
     const daysInMonth = new Date(year, month + 1, 0).getDate();
 
-    // Filtrar tareas por mes y año
     const tasksForMonth = tasks.filter(task => {
         const taskDate = new Date(`${task.fecha}T${task.hora}`);
         return taskDate.getMonth() === month && taskDate.getFullYear() === year;
@@ -93,13 +93,14 @@ export function initializeCalendar() {
     // Renderizar el calendario inicial
     renderCalendar(currentMonth, currentYear, currentUser.tasks);
 
-    // Añadir event listeners para navegación
+    // Añadir event listeners para navegación con depuración
     monthBf.addEventListener('click', () => {
         currentMonth--;
         if (currentMonth < 0) {
             currentMonth = 11;
             currentYear--;
         }
+        console.log(`Navegando atrás a: ${months[currentMonth]} ${currentYear}`);
         renderCalendar(currentMonth, currentYear, currentUser.tasks);
     });
 
@@ -109,6 +110,7 @@ export function initializeCalendar() {
             currentMonth = 0;
             currentYear++;
         }
+        console.log(`Navegando adelante a: ${months[currentMonth]} ${currentYear}`);
         renderCalendar(currentMonth, currentYear, currentUser.tasks);
     });
 }
