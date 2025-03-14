@@ -187,18 +187,6 @@ body {
   transform: translateX(-100%);
   animation: shimmer 2s infinite;
 }
-@media (max-width: 480px) {
-  .logo {
-    width: 100px;
-    height: 100px;
-  }
-}
-@media (min-width: 1024px) {
-  .logo {
-    width: 150px;
-    height: 150px;
-  }
-}
 
 .logo-letter {
   color: white;
@@ -231,6 +219,7 @@ body {
 .loading-spinner {
   display: flex;
   margin-top: 1rem;
+  justify-content: center;
 }
 
 .dot {
@@ -306,17 +295,6 @@ body {
   transition-duration: 0.3s;
   transition-timing-function: ease;
 }
-@media (max-width: 480px) {
-  .auth-container {
-    max-width: 90%;
-    padding: 1.5rem;
-  }
-}
-@media (min-width: 1024px) {
-  .auth-container {
-    max-width: 450px;
-  }
-}
 
 .auth-header {
   text-align: center;
@@ -349,7 +327,7 @@ body {
 .input-with-icon {
   position: relative;
 }
-.input-with-icon input {
+.input-with-icon .auth-input {
   width: 100%;
   padding: 0.8rem 1rem 0.8rem 2.5rem;
   border: 1px solid var(--border);
@@ -361,12 +339,12 @@ body {
   transition-duration: 0.3s;
   transition-timing-function: ease;
 }
-.input-with-icon input:focus {
+.input-with-icon .auth-input:focus {
   outline: none;
   border-color: var(--primary);
   box-shadow: 0 0 0 2px rgba(42, 212, 192, 0.2);
 }
-.input-with-icon input:focus + .input-icon {
+.input-with-icon .auth-input:focus + .input-icon {
   filter: var(--icon-primary-filter);
 }
 .input-with-icon .input-icon {
@@ -407,13 +385,6 @@ body {
 }
 .form-options .forgot-password:hover {
   text-decoration: underline;
-}
-@media (max-width: 480px) {
-  .form-options {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.75rem;
-  }
 }
 
 .auth-btn {

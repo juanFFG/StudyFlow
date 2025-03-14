@@ -42,12 +42,12 @@
       animation: shimmer 2s infinite;
     }
   
-    @include respond-to(mobile) {
+    @include respond-to($mobile) {
       width: 100px;
       height: 100px;
     }
   
-    @include respond-to(desktop) {
+    @include respond-to($desktop) {
       width: 150px;
       height: 150px;
     }
@@ -81,6 +81,7 @@
   .loading-spinner {
     display: flex;
     margin-top: 1rem;
+    justify-content: center;
   }
   
   .dot {
