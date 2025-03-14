@@ -11,16 +11,9 @@ const months = [
     'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'
 ];
 
-// Fecha actual para inicializar
-let currentDate = new Date();
-let currentMonth = currentDate.getMonth(); // 0-11
-let currentYear = currentDate.getFullYear();
-
-console.log(`Inicializando calendario: ${months[currentMonth]} ${currentYear}`);
-
 // Función para renderizar el calendario
 function renderCalendar(month, year, tasks) {
-    console.log(`Renderizando: ${months[month]} ${year}`); // Depuración
+    console.log(`Renderizando: ${months[month]} ${year} (currentMonth: ${month}, currentYear: ${year})`);
     monthCurrent.textContent = `${months[month]} ${year}`;
     calendarList.innerHTML = '';
 
@@ -83,34 +76,49 @@ function renderCalendar(month, year, tasks) {
 }
 
 // Exportar la función principal para inicializar el calendario
-export function initializeCalendar() {
+export function initializeCalendar(month = new Date().getMonth(), year = new Date().getFullYear()) {
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
     if (!currentUser || !currentUser.tasks) {
         console.error('Usuario no encontrado o sin tareas');
         return;
     }
 
-    // Renderizar el calendario inicial
-    renderCalendar(currentMonth, currentYear, currentUser.tasks);
+    console.log(`Inicializando calendario: ${months[month]} ${month} ${year}`); // Depuración
 
-    // Añadir event listeners para navegación con depuración
-    monthBf.addEventListener('click', () => {
-        currentMonth--;
-        if (currentMonth < 0) {
-            currentMonth = 11;
-            currentYear--;
+    // Renderizar el calendario inicial con los parámetros proporcionados
+    renderCalendar(month, year, currentUser.tasks);
+
+    // Añadir event listeners para navegación con protección
+    let lastClickTime = 0;
+    const clickDelay = 300; // Evitar clics dobles accidentales (300ms)
+
+    monthBf.addEventListener('click', (e) => {
+        const now = Date.now();
+        if (now - lastClickTime < clickDelay) return;
+        lastClickTime = now;
+
+        month--;
+        if (month < 0) {
+            month = 11;
+            year--;
         }
-        console.log(`Navegando atrás a: ${months[currentMonth]} ${currentYear}`);
-        renderCalendar(currentMonth, currentYear, currentUser.tasks);
+        console.log(`Navegando atrás a: ${months[month]} ${year} (month: ${month}, year: ${year})`);
+        renderCalendar(month, year, currentUser.tasks);
     });
 
-    monthAf.addEventListener('click', () => {
-        currentMonth++;
-        if (currentMonth > 11) {
-            currentMonth = 0;
-            currentYear++;
+    monthAf.addEventListener('click', (e) => {
+        const now = Date.now();
+        if (now - lastClickTime < clickDelay) return;
+        lastClickTime = now;
+
+        month++;
+        if (month > 11) {
+            month = 0;
+            year++;
         }
-        console.log(`Navegando adelante a: ${months[currentMonth]} ${currentYear}`);
-        renderCalendar(currentMonth, currentYear, currentUser.tasks);
+        console.log(`Navegando adelante a: ${months[month]} ${year} (month: ${month}, year: ${year})`);
+        renderCalendar(month, year, currentUser.tasks);
     });
+
+    return { month, year }; // Devolver los valores actuales para persistencia
 }

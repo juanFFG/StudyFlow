@@ -191,11 +191,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Actualizar la lista de tareas
             loadTodayTasks();
             showSuccessPopup("Tarea agregada correctamente.");
-
-            // Si estamos en calendar-view, actualizar el calendario
-            if (localStorage.getItem("currentScreen") === "calendar-view") {
-                initializeCalendar();
-            }
+            initializeCalendar();
         });
     }
 
