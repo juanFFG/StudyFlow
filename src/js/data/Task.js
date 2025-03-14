@@ -7,3 +7,5 @@ export class Task {
         this.comment = comment.length > 20 ? comment.substring(0, 20) : comment; // Máximo 20 caracteres
     }
 }
+
+export default Task;

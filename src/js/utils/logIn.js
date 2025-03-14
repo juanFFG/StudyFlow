@@ -1,6 +1,7 @@
 import bcrypt from 'bcryptjs';
 import { showErrorPopup, showSuccessPopup } from './popUps.js';
 import { showTodayScreenLT } from './easyNav.js';
+import { loadTodayTasks } from './loadTodayTasks.js'
 
 // Iniciar sesión
 export async function loginUser(username, password) {
@@ -33,5 +34,6 @@ export async function loginUser(username, password) {
     localStorage.setItem("loggedIn", true);
 
     showSuccessPopup("Inicio de sesión exitoso.");
+    loadTodayTasks();
     showTodayScreenLT();
 }

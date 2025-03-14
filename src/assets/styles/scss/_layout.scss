@@ -38,21 +38,25 @@
     cursor: pointer;
     @include transition(all);
     
-    &.add {
-      width: 36px;
-      height: 36px;
-      padding: 0;
-      border-radius: 50%;
-      @include flex(row, center, center);
-      font-size: 20px;
-      background-color: var(--primary);
-      color: white;
-    }
-    
     @include respond-to(mobile) {
       padding: 8px 12px;
       font-size: 13px;
     }
+  }
+
+  .nav-add {
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    border-radius: 50%;
+    border: none;
+    @include flex(row, center, center);
+    font-size: 20px;
+    background-color: var(--primary);
+    color: white;
+    font-weight: 500;
+    cursor: pointer;
+    @include transition(all);
   }
 
   .nav-btn.active {

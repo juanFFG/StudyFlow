@@ -5,6 +5,8 @@ import { showRegisterScreenL, showLoginScreenL } from './utils/easyNav.js';
 import { loginUser } from './utils/logIn.js';
 import { updateDateTime } from './utils/dateTime.js';
 import { Pomodoro } from './data/Pomodoro.js';
+import { showErrorPopup, showSuccessPopup } from './utils/popUps.js';
+import { loadTodayTasks } from './utils/loadTodayTasks.js';
 
 document.addEventListener('DOMContentLoaded', () => {
     const navigation = new Navigation(
@@ -14,17 +16,18 @@ document.addEventListener('DOMContentLoaded', () => {
     navigation.init();
 
     let logged = localStorage.getItem("loggedIn");
-    let curView = localStorage.getItem("currentScreen") || "loginScreen";  
+    let curView = localStorage.getItem("currentScreen") || "loginScreen";
 
     if (logged === "true") {
         if (curView === "splashScreen" || !curView) {
             console.log("Usuario logueado pero atrapado en splash. Corrigiendo...");
             curView = "today-view";
             localStorage.setItem("currentScreen", curView);
+            loadTodayTasks();
         }
-    
+
         console.log("📌 Navegando a:", curView);
-    
+
         setTimeout(() => {
             navigation.showView(curView);
         }, 500);
@@ -33,7 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(() => {
             document.getElementById('splashScreen').classList.add('hidden');
         }, 1000);
-    }else {
+    } else {
         console.log("Usuario no logueado");
         setTimeout(() => {
             showRegisterScreen();
@@ -58,21 +61,21 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Manejar el formulario de login
-    document.getElementById("loginForm")?.addEventListener("submit", async function(event) {
+    document.getElementById("loginForm")?.addEventListener("submit", async function (event) {
         event.preventDefault();
         const username = document.getElementById("login-username").value;
         const password = document.getElementById("login-password").value;
-    
+
         await loginUser(username, password);
     });
 
     // Configurar enlaces para cambiar entre pantallas
-    document.getElementById('showLoginLink')?.addEventListener('click', function(e) {
+    document.getElementById('showLoginLink')?.addEventListener('click', function (e) {
         e.preventDefault();
         showLoginScreenL();
     });
 
-    document.getElementById('showRegisterLink')?.addEventListener('click', function(e) {
+    document.getElementById('showRegisterLink')?.addEventListener('click', function (e) {
         e.preventDefault();
         showRegisterScreenL();
     });
@@ -84,4 +87,98 @@ document.addEventListener('DOMContentLoaded', () => {
         localStorage.removeItem("currentUser");
         location.reload();
     });
+
+    // --- VARIABLES DEL MODAL ---
+    const addTaskBtn = document.getElementById("add-task-modal");
+    const modal = document.getElementById("taskModal");
+    const closeModalBtn = modal.querySelector(".close-modal");
+    const cancelBtn = modal.querySelector(".cancel-btn");
+    const addTaskForm = document.getElementById("add-task-form");
+
+    // Función para mostrar el modal
+    addTaskBtn.addEventListener("click", () => {
+        modal.classList.add('active');
+    });
+
+    // Función para ocultar el modal
+    const closeModal = () => {
+        modal.classList.remove('active');
+    };
+
+    closeModalBtn.addEventListener("click", closeModal);
+    cancelBtn.addEventListener("click", closeModal);
+
+    // Cerrar modal si se hace clic fuera de él
+    window.addEventListener("click", (event) => {
+        if (event.target === modal) {
+            closeModal();
+        }
+    });
+
+    // --- AGREGAR TAREA ---
+    if (addTaskForm) {
+        addTaskForm.addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            // Obtener valores del formulario
+            const tipo = document.getElementById("task-type").value.trim();
+            const asignatura = document.getElementById("task-subject").value.trim();
+            const fecha = document.getElementById("task-date").value.trim();
+            const hora = document.getElementById("task-time").value.trim();
+            const valor = document.getElementById("task-value").value.trim();
+            const comentario = document.getElementById("task-comment").value.trim();
+
+            // Validar que los campos no estén vacíos
+            if (!tipo || !asignatura || !fecha || !hora || !valor) {
+                showErrorPopup("Todos los campos obligatorios deben llenarse.");
+                return;
+            }
+
+            const task = {
+                id: Date.now(),
+                tipo,
+                asignatura,
+                fecha,
+                hora,
+                valor,
+                comentario,
+            };
+
+            // Obtener usuario actual
+            let currentUser = JSON.parse(localStorage.getItem("currentUser"));
+            if (!currentUser) {
+                showErrorPopup("No hay usuario autenticado.");
+                return;
+            }
+
+            // Obtener lista de usuarios
+            let users = JSON.parse(localStorage.getItem("users")) || [];
+            let userIndex = users.findIndex(user => user.username === currentUser.username);
+
+            if (userIndex === -1) {
+                showErrorPopup("Usuario no encontrado.");
+                return;
+            }
+
+            // Inicializar `tasks` si no existe
+            users[userIndex].tasks = users[userIndex].tasks || [];
+
+            // Agregar la tarea
+            users[userIndex].tasks.push(task);
+
+            // Guardar la lista de usuarios actualizada
+            localStorage.setItem("users", JSON.stringify(users));
+
+            // Actualizar currentUser en localStorage
+            currentUser.tasks = users[userIndex].tasks;
+            localStorage.setItem("currentUser", JSON.stringify(currentUser));
+
+            // Cerrar modal y limpiar formulario
+            closeModal();
+            addTaskForm.reset();
+
+            showSuccessPopup("Tarea agregada correctamente.");
+        });
+    }
+
 });
