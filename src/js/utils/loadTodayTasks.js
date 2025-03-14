@@ -37,7 +37,12 @@ export function loadTodayTasks() {
     taskListContainer.innerHTML = ""; // Limpiar antes de agregar
 
     if (todayTasks.length === 0) {
-        taskListContainer.innerHTML = "<p>No tienes tareas para hoy.</p>";
+        taskListContainer.innerHTML = `
+            <div class="task-card">
+                <p class="task-subject">No tienes tareas para hoy.</p>
+                <p class="task-comment">¿Que tal una sesión de estudio?</p>
+            </div>
+        `;
         return;
     }
 

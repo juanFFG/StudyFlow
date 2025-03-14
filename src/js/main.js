@@ -7,6 +7,7 @@ import { updateDateTime } from './utils/dateTime.js';
 import { Pomodoro } from './data/Pomodoro.js';
 import { showErrorPopup, showSuccessPopup } from './utils/popUps.js';
 import { loadTodayTasks } from './utils/loadTodayTasks.js';
+import { initializeCalendar } from './utils/calendar.js';
 
 document.addEventListener('DOMContentLoaded', () => {
     const navigation = new Navigation(
@@ -17,6 +18,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let logged = localStorage.getItem("loggedIn");
     let curView = localStorage.getItem("currentScreen") || "loginScreen";
+
+    // Función para actualizar el estado activo de los botones
+    function updateActiveButton(view) {
+        document.querySelectorAll('.nav-btn').forEach(btn => {
+            btn.classList.remove('active');
+            if (btn.getAttribute('data-view') === view) {
+                btn.classList.add('active');
+            }
+        });
+    }
 
     if (logged === "true") {
         if (curView === "splashScreen" || !curView) {
@@ -177,8 +188,34 @@ document.addEventListener('DOMContentLoaded', () => {
             closeModal();
             addTaskForm.reset();
 
+            // Actualizar la lista de tareas
+            loadTodayTasks();
             showSuccessPopup("Tarea agregada correctamente.");
+
+            // Si estamos en calendar-view, actualizar el calendario
+            if (localStorage.getItem("currentScreen") === "calendar-view") {
+                initializeCalendar();
+            }
         });
     }
+
+    // Escuchar cambios de vista en la navegación del dashboard
+    document.querySelectorAll('.nav-btn').forEach(button => {
+        button.addEventListener('click', (e) => {
+            const view = e.target.getAttribute('data-view');
+            navigation.showView(view);
+            localStorage.setItem("currentScreen", view);
+            updateActiveButton(view);
+
+            // Inicializar el calendario si se selecciona calendar-view
+            if (view === 'calendar-view') {
+                initializeCalendar();
+            }
+            // Puedes agregar más lógica para otras vistas si es necesario
+            else if (view === 'today-view') {
+                loadTodayTasks();
+            }
+        });
+    });
 
 });
